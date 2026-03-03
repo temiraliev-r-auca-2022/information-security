@@ -1,0 +1,26 @@
+touch labfile.txt
+ls -la labfile.txt
+-rw-rw-r-- 1 kali kali 0 Mar  3 06:34 labfile.txt
+
+cat /etc/group | grep labgroup
+labgroup:x:1003:
+
+cat /etc/passwd | grep labuser
+labuser:x:1001:1001:Rustam,202,505011104,505011104:/home/labuser:/bin/bash
+
+sudo chown labuser labfile.txt
+ls -la labfile.txt
+-rw-rw-r-- 1 labuser kali 0 Mar  3 06:34 labfile.txt
+
+sudo chown :labgroup labfile.txt
+ls -la labfile.txt
+-rw-rw-r-- 1 labuser labgroup 0 Mar  3 06:34 labfile.txt
+
+sudo chmod 000 labfile.txt
+ls -la labfile.txt
+---------- 1 labuser labgroup 0 Mar  3 06:34 labfile.txt
+
+cat labfile.txt
+cat: labfile.txt: Permission denied
+
+
