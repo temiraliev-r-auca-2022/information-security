@@ -1,0 +1,8 @@
+One more advanced attack is called a Targeted Dictionary Attack or Hybrid Brute-Force Attack. In this type of attack, the attacker collects personal information about the victim, such as name, surname, date of birth, nickname, or other public data from social media (OSINT). After that, the attacker creates different password combinations based on this information. For example, if the victim’s name is Ivan Petrov and date of birth is 15.07.2003, possible generated passwords can be:
+ivan2003
+petrov1507
+IvanPetrov123
+15072003
+Ivan@2003
+This method is more effective than simple brute-force because many users create passwords based on personal information. By combining dictionary words with personal data and numbers, the attacker increases the chance of successful login. This attack shows why using personal information in passwords is insecure and predictable.
+
