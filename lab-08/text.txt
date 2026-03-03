@@ -1,0 +1,15 @@
+┌──(kali㉿kali)-[~/information-security/lab-08]
+└─$ touch file.txt
+vim file.txt
+                                                                                                                                                                                                                                           
+┌──(kali㉿kali)-[~/information-security/lab-08]
+└─$ ls
+file.txt
+
+/word search forward for "word"
+n go to next search result
+N go to previous search result
+x delete character
+u undo last action
+gg go to beginning of file
+G go to end of file
