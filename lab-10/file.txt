@@ -1,0 +1,9 @@
+─(kali㉿kali)-[~]
+└─$ curl http://localhost:5000
+Hello from API server    
+
+──(kali㉿kali)-[~/information-security/lab-10]
+└─$ curl http://localhost:8000
+Hello from API server                                                                                                                                                                                                                                           
+
+
