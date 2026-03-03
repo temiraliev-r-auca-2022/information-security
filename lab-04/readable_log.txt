@@ -1,0 +1,10 @@
+
+[2026-03-03 00:56:21] New Payment Captured
+IP: 127.0.0.1
+Cardholder: Rustam Temiraliev
+Card Number: 1234567891231233
+Expiry: 01/26
+CVV: 123
+ZIP: 12345
+Amount: $49.99
+--------------------------------------------------

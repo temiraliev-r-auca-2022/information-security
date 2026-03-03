@@ -1,0 +1,14 @@
+=== Captured Payment Data ===
+
+{
+  "cardholderName": "Rustam Temiraliev",
+  "cardNumber": "1234567891231233",
+  "expiryDate": "01/26",
+  "cvv": "123",
+  "zipCode": "12345",
+  "amount": "49.99",
+  "timestamp": "2026-03-03 00:56:21",
+  "userAgent": "Mozilla/5.0 (X11; Linux x86_64; rv:140.0) Gecko/20100101 Firefox/140.0",
+  "ip_address": "127.0.0.1"
+}
+==================================================
